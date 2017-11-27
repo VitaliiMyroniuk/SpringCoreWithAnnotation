@@ -1,7 +1,6 @@
 package com.epam.myroniuk.service;
 
 import com.epam.myroniuk.entity.Event;
-
 import java.io.IOException;
 
 /**

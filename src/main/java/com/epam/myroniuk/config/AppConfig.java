@@ -5,7 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import java.text.DateFormat;
-import java.util.Date;
+import java.util.*;
 
 /**
  * @author Vitalii Myroniuk
@@ -29,5 +29,8 @@ public class AppConfig {
         return "Some message for client 1";
     }
 
-
+    @Bean
+    public Integer cacheSize() {
+        return 3;
+    }
 }
