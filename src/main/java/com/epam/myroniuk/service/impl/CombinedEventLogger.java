@@ -12,16 +12,16 @@ import java.util.List;
  */
 @Component
 public class CombinedEventLogger implements EventLogger {
-    private List<EventLogger> loggers;
+    private List<EventLogger> listOfLoggers;
 
     @Autowired
-    public void setLoggers(List<EventLogger> listLoggers) {
-        this.loggers = listLoggers;
+    public void setLoggers(List<EventLogger> listOfLoggers) {
+        this.listOfLoggers = listOfLoggers;
     }
 
     @Override
     public void logEvent(Event event) throws IOException {
-        for (EventLogger logger : loggers) {
+        for (EventLogger logger : listOfLoggers) {
             logger.logEvent(event);
         }
     }

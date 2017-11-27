@@ -22,6 +22,13 @@ public class CacheFileEventLogger extends FileEventLogger {
         this.cache = cache;
     }
 
+    @PreDestroy
+    private void destroy() throws IOException {
+        if (!cache.isEmpty()) {
+            writeEventsFromCache();
+        }
+    }
+
     @Override
     public void logEvent(Event event) throws IOException {
         cache.add(event);
@@ -34,13 +41,6 @@ public class CacheFileEventLogger extends FileEventLogger {
     private void writeEventsFromCache() throws IOException {
         for (Event event : cache) {
             super.logEvent(event);
-        }
-    }
-
-    @PreDestroy
-    private void destroy() throws IOException {
-        if (!cache.isEmpty()) {
-            writeEventsFromCache();
         }
     }
 }

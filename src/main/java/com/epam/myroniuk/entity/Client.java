@@ -2,6 +2,7 @@ package com.epam.myroniuk.entity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import java.util.Objects;
 
@@ -9,15 +10,14 @@ import java.util.Objects;
  * @author Vitalii Myroniuk
  */
 @Component
+@PropertySource(value = "classpath:client.properties")
 public class Client {
-    @Value(value = "1")
     private String id;
-
-    @Value(value = "John Smith")
     private String fullName;
 
     @Autowired
-    public Client(String id, String fullName) {
+    public Client(@Value(value = "${id}") String id,
+                  @Value(value = "${fullName}") String fullName) {
         this.id = id;
         this.fullName = fullName;
     }

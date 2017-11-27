@@ -1,9 +1,6 @@
 package com.epam.myroniuk.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.*;
 import java.text.DateFormat;
 import java.util.*;
 
@@ -14,9 +11,11 @@ import java.util.*;
 @ComponentScan(basePackages = {"com.epam.myroniuk"})
 @Import(LoggersConfig.class)
 public class AppConfig {
+
+    // Beans to inject into Event object
     @Bean
-    public DateFormat dateFormat() {
-        return DateFormat.getDateTimeInstance();
+    public int id() {
+        return new Random().nextInt(100);
     }
 
     @Bean
@@ -30,7 +29,7 @@ public class AppConfig {
     }
 
     @Bean
-    public Integer cacheSize() {
-        return 3;
+    public DateFormat dateFormat() {
+        return DateFormat.getDateTimeInstance();
     }
 }
