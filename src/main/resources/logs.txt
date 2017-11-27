@@ -1,7 +1,0 @@
-
-Event{id=40, msg='Some message for client John Smith', date=Nov 27, 2017 5:52:56 PM}
-Event{id=37, msg='Some message for client 1', date=Nov 27, 2017 5:52:56 PM}
-Event{id=40, msg='Some message for client John Smith', date=Nov 27, 2017 5:52:56 PM}
-Event{id=18, msg='Some message for client John Smith', date=Nov 27, 2017 5:53:07 PM}
-Event{id=24, msg='Some message for client 1', date=Nov 27, 2017 5:53:07 PM}
-Event{id=18, msg='Some message for client John Smith', date=Nov 27, 2017 5:53:07 PM}
