@@ -62,7 +62,7 @@ public class Event {
     public String toString() {
         return "Event{" +
                 "id=" + id +
-                ", msg='" + message + '\'' +
+                ", message='" + message + '\'' +
                 ", date=" + dateFormat.format(date) +
                 '}';
     }

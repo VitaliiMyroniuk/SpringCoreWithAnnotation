@@ -11,6 +11,7 @@ import java.util.*;
  * @author Vitalii Myroniuk
  */
 @Configuration
+@EnableAspectJAutoProxy
 @ComponentScan(basePackages = {"com.epam.myroniuk"})
 public class AppConfig {
     @Autowired

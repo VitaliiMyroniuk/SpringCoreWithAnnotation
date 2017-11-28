@@ -12,7 +12,7 @@ import java.util.List;
  * @author Vitalii Myroniuk
  */
 @Component
-@PropertySource(value = "data.properties")
+@PropertySource(value = "classpath:data.properties")
 public class CacheFileEventLogger extends FileEventLogger {
     @Value("${cacheSize}")
     private int cacheSize;
@@ -40,13 +40,5 @@ public class CacheFileEventLogger extends FileEventLogger {
         for (Event event : cache) {
             super.logEvent(event);
         }
-    }
-
-    public int getCacheSize() {
-        return cacheSize;
-    }
-
-    public void setCacheSize(int cacheSize) {
-        this.cacheSize = cacheSize;
     }
 }

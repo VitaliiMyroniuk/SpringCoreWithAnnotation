@@ -16,7 +16,9 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.test>1.8</maven.compiler.test>
         <spring.version>5.0.0.RELEASE</spring.version>
+        <aspectj.version>1.8.11</aspectj.version>
         <commons-io.version>2.6</commons-io.version>
+        <log4j.version>1.2.17</log4j.version>
         <junit.version>4.12</junit.version>
         <mockito.version>1.10.19</mockito.version>
     </properties>
@@ -47,11 +49,25 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <!-- AspectJ support -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+
         <!-- Commons IO library support -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
+        </dependency>
+
+        <!-- Logging support -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
 
         <!-- Testing support -->
