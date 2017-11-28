@@ -2,6 +2,7 @@ package com.epam.myroniuk.service.impl;
 
 import com.epam.myroniuk.entity.Event;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import javax.annotation.PreDestroy;
 import java.io.IOException;

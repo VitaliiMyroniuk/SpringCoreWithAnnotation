@@ -1,5 +1,11 @@
 package com.epam.myroniuk.config;
 
+import com.epam.myroniuk.entity.EventType;
+import com.epam.myroniuk.service.EventLogger;
+import com.epam.myroniuk.service.impl.CombinedEventLogger;
+import com.epam.myroniuk.service.impl.ConsoleEventLogger;
+import com.epam.myroniuk.service.impl.FileEventLogger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import java.text.DateFormat;
 import java.util.*;
@@ -11,7 +17,6 @@ import java.util.*;
 @ComponentScan(basePackages = {"com.epam.myroniuk"})
 @Import(LoggersConfig.class)
 public class AppConfig {
-
     // Beans to inject into Event object
     @Bean
     public int id() {
