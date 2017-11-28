@@ -12,10 +12,13 @@ import java.util.List;
  */
 @Component
 public class CombinedEventLogger implements EventLogger {
+    @Autowired
     private List<EventLogger> listOfLoggers;
 
-    @Autowired
-    public void setLoggers(List<EventLogger> listOfLoggers) {
+    public CombinedEventLogger() {
+    }
+
+    public void setListOfLoggers(List<EventLogger> listOfLoggers) {
         this.listOfLoggers = listOfLoggers;
     }
 

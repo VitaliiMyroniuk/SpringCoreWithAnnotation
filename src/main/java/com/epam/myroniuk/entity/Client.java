@@ -12,12 +12,16 @@ import java.util.Objects;
 @Component
 @PropertySource(value = "classpath:client.properties")
 public class Client {
+    @Value("${id}")
     private String id;
+
+    @Value("${fullName}")
     private String fullName;
 
-    @Autowired
-    public Client(@Value(value = "${id}") String id,
-                  @Value(value = "${fullName}") String fullName) {
+    public Client() {
+    }
+
+    public Client(String id, String fullName) {
         this.id = id;
         this.fullName = fullName;
     }
