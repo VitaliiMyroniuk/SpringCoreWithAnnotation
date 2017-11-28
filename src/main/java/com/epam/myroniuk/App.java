@@ -18,17 +18,11 @@ import java.util.Map;
  */
 @Component
 public class App {
-
     @Autowired
     private Client client;
 
     @Autowired
     private Map<EventType, EventLogger> loggers;
-
-    public App(Client client, Map<EventType, EventLogger> loggers) {
-        this.client = client;
-        this.loggers = loggers;
-    }
 
     public static void main(String[] args) throws IOException {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
@@ -40,8 +34,8 @@ public class App {
 
     private void someAdd(EventType eventType, Event event) throws IOException {
         EventLogger eventLogger = loggers.get(eventType);
-        String message = event.getMsg().replaceAll(client.getId(), client.getFullName());
-        event.setMsg(message);
+        String message = event.getMessage().replaceAll(client.getId(), client.getFullName());
+        event.setMessage(message);
         eventLogger.logEvent(event);
     }
 }

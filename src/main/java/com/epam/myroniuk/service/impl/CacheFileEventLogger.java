@@ -1,35 +1,24 @@
 package com.epam.myroniuk.service.impl;
 
 import com.epam.myroniuk.entity.Event;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Vitalii Myroniuk
  */
 @Component
+@PropertySource(value = "data.properties")
 public class CacheFileEventLogger extends FileEventLogger {
-    @Value("3")
+    @Value("${cacheSize}")
     private int cacheSize;
 
     @Value("#{new java.util.ArrayList()}")
     private List<Event> cache;
-
-    public CacheFileEventLogger(String fileName, int cacheSize, List<Event> cache) {
-        super(fileName);
-        this.cacheSize = cacheSize;
-        this.cache = cache;
-    }
-
-    public CacheFileEventLogger() {
-    }
 
     @PreDestroy
     private void destroy() throws IOException {
