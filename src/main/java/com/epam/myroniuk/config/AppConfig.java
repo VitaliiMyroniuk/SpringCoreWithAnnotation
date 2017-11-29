@@ -4,7 +4,10 @@ import com.epam.myroniuk.entity.EventType;
 import com.epam.myroniuk.service.EventLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import java.util.*;
 
 /**
@@ -13,6 +16,7 @@ import java.util.*;
 @Configuration
 @EnableAspectJAutoProxy
 @ComponentScan(basePackages = {"com.epam.myroniuk"})
+@PropertySource(value = "classpath:jdbc.properties")
 public class AppConfig {
     @Autowired
     @Qualifier("consoleEventLogger")
@@ -25,6 +29,18 @@ public class AppConfig {
     @Autowired
     @Qualifier("combinedEventLogger")
     private EventLogger combinedEventLogger;
+
+    @Value("${jdbc.driverClassName}")
+    private String driverClassName;
+
+    @Value("${jdbc.url}")
+    private String url;
+
+    @Value("${jdbc.username}")
+    private String userName;
+
+    @Value("${jdbc.password}")
+    private String password;
 
     // Bean to inject into CombinedEventLogger object
     @Bean
@@ -42,5 +58,20 @@ public class AppConfig {
         result.put(EventType.INFO, consoleEventLogger);
         result.put(EventType.ERROR, combinedEventLogger);
         return result;
+    }
+
+    @Bean
+    public DriverManagerDataSource dataSource() {
+        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+        driverManagerDataSource.setDriverClassName(driverClassName);
+        driverManagerDataSource.setUrl(url);
+        driverManagerDataSource.setUsername(userName);
+        driverManagerDataSource.setPassword(password);
+        return driverManagerDataSource;
+    }
+
+    @Bean
+    public JdbcTemplate jdbcTemplate() {
+        return new JdbcTemplate(dataSource());
     }
 }
