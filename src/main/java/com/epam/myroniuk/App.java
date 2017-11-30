@@ -33,9 +33,6 @@ public class App {
         App app = (App) context.getBean("app");
         Event event = (Event) context.getBean("event");
         app.someAdd(EventType.ERROR, event);
-
-        new DBEventLogger().logEvent(event);
-
         ((ConfigurableApplicationContext) context).close();
     }
 

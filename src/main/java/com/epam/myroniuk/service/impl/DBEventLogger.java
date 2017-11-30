@@ -13,8 +13,8 @@ import java.io.IOException;
  */
 @Component
 public class DBEventLogger implements EventLogger {
+
     @Autowired
-    @Qualifier("jdbcTemplate")
     private JdbcTemplate jdbcTemplate;
 
     @Override

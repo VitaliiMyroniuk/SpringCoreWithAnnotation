@@ -60,12 +60,9 @@ public class AppConfig {
         return result;
     }
 
-    @Bean
+    @Bean(name = "dataSource")
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-
-        System.out.println(driverClassName);
-
         driverManagerDataSource.setDriverClassName(driverClassName);
         driverManagerDataSource.setUrl(url);
         driverManagerDataSource.setUsername(userName);
@@ -74,7 +71,7 @@ public class AppConfig {
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate() {
-        return new JdbcTemplate(dataSource());
+    public JdbcTemplate jdbcTemplate(DriverManagerDataSource dataSource) {
+        return new JdbcTemplate(dataSource);
     }
 }
