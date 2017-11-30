@@ -63,6 +63,9 @@ public class AppConfig {
     @Bean
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+
+        System.out.println(driverClassName);
+
         driverManagerDataSource.setDriverClassName(driverClassName);
         driverManagerDataSource.setUrl(url);
         driverManagerDataSource.setUsername(userName);

@@ -19,8 +19,9 @@ public class DBEventLogger implements EventLogger {
 
     @Override
     public void logEvent(Event event) throws IOException {
+        System.out.println(jdbcTemplate == null);
         jdbcTemplate.update(
-                "INSERT INTO events (id, message) VALUES (?, ?)",
+                "INSERT INTO spring_core.events (id, message) VALUES (?, ?)",
                 event.getId(),
                 event.toString());
     }

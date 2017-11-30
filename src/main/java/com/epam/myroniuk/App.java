@@ -5,7 +5,9 @@ import com.epam.myroniuk.entity.Client;
 import com.epam.myroniuk.entity.Event;
 import com.epam.myroniuk.entity.EventType;
 import com.epam.myroniuk.service.EventLogger;
+import com.epam.myroniuk.service.impl.DBEventLogger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -19,9 +21,11 @@ import java.util.Map;
 @Component
 public class App {
     @Autowired
+    @Qualifier("client")
     private Client client;
 
     @Autowired
+    @Qualifier("loggers")
     private Map<EventType, EventLogger> loggers;
 
     public static void main(String[] args) throws IOException {
@@ -29,6 +33,9 @@ public class App {
         App app = (App) context.getBean("app");
         Event event = (Event) context.getBean("event");
         app.someAdd(EventType.ERROR, event);
+
+        new DBEventLogger().logEvent(event);
+
         ((ConfigurableApplicationContext) context).close();
     }
 
