@@ -5,7 +5,6 @@ import com.epam.myroniuk.entity.Client;
 import com.epam.myroniuk.entity.Event;
 import com.epam.myroniuk.entity.EventType;
 import com.epam.myroniuk.service.EventLogger;
-import com.epam.myroniuk.service.impl.DBEventLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -33,6 +32,8 @@ public class App {
         App app = (App) context.getBean("app");
         Event event = (Event) context.getBean("event");
         app.someAdd(EventType.ERROR, event);
+        EventLogger eventLogger = context.getBean("DBEventLogger", EventLogger.class);
+        eventLogger.logEvent(event);
         ((ConfigurableApplicationContext) context).close();
     }
 

@@ -60,18 +60,18 @@ public class AppConfig {
         return result;
     }
 
-    @Bean(name = "dataSource")
+    @Bean
     public DriverManagerDataSource dataSource() {
-        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setDriverClassName(driverClassName);
-        driverManagerDataSource.setUrl(url);
-        driverManagerDataSource.setUsername(userName);
-        driverManagerDataSource.setPassword(password);
-        return driverManagerDataSource;
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(driverClassName);
+        dataSource.setUrl(url);
+        dataSource.setUsername(userName);
+        dataSource.setPassword(password);
+        return dataSource;
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate(DriverManagerDataSource dataSource) {
-        return new JdbcTemplate(dataSource);
+    public JdbcTemplate jdbcTemplate() {
+        return new JdbcTemplate(dataSource());
     }
 }
